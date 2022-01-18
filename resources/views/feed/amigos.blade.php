@@ -2,133 +2,73 @@
 
     @section('content')
         @include('feed/lados/esquerda')
-    			
+    			<h3>{{ $numero }} Amigos</h3>
+       
+        
+          @if($perfil->agente_id==session()->get('id'))
+                <h5>Permissão, escolha uma para mudar de : {{ $perfil->permissaoamizade->tipo }}</h5>
+
+                <div id="permissaoMensagem" class="resposta" style="display: none"></div>
+        
+                <div class="form-group row">
+                <select id="permissaoAmizade" name="permissaoAmizade" class="form-control"
+                style="width: 25%; font-size:10px; height:30px; margin-bottom:15px; display:inline-block;margin-right:-1" id="permissao_id">
+                <option selected value=0>Selecione uma permissão</option>
+        
+                    @if($perfil->permissaoAmizade!=1) <option value=1>Privado</option>@endif
+                    @if($perfil->permissaoAmizade!=2) <option value=2>Amigo</option>@endif
+                    @if($perfil->permissaoAmizade!=3) <option value=3>Amigo do Amigo</option>@endif
+                    @if($perfil->permissaoAmizadeid!=4) <option value=4>Publica</option>@endif
+                </select>
+                </div>
+          @endif
  <!-- Friend List
+    @if($activar!=0 )
             ================================================= -->
             <div class="friend-list">
             	<div class="row">
-            		<div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="assets/images/covers/1.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="assets/images/users/user-3.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timeline.html" class="profile-link">Sophia Lee</a></h5>
-                      	<p>Student at Harvard</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            		<div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="assets/images/covers/3.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="assets/images/users/user-4.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timeline.html" class="profile-link">John Doe</a></h5>
-                      	<p>Traveler</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                @foreach ( $amigos as $amigos )
+                @if( $amigos->agentesolicitante->id==session()->get('id'))
                 <div class="col-md-6 col-sm-6">
                   <div class="friend-card">
-                  	<img src="assets/images/covers/4.jpg" alt="profile-cover" class="img-responsive cover" />
+                  	<img src="{{asset('assets/images/covers/1.jpg')}}" alt="profile-cover" class="img-responsive cover" />
                   	<div class="card-info">
-                      <img src="assets/images/users/user-10.jpg" alt="user" class="profile-photo-lg" />
+                      <img src="{{ url('storage/'.$amigos->agentesolicitado->perfil->fotoPerfil) }}" alt="user" class="profile-photo-lg" />
                       <div class="friend-info">
-                        <a href="timeline.html" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="#" class="profile-link">Julia Cox</a></h5>
-                      	<p>Art Designer</p>
+                        <a href="#" class="pull-right text-green">Amigo(a)</a>
+                      	<h5><a href=" {{ route('perfil.visualizar',$amigos->agentesolicitado->id) }}" class="profile-link">{{ $amigos->agentesolicitado->perfil->nome }}</a></h5>
+                      
+                      	<p>{{ $amigos->agentesolicitado->username }}</p>
                       </div>
                     </div>
                   </div>
                 </div>
+
+                @elseif($amigos->agentesolicitado->id==session()->get('id'))
                 <div class="col-md-6 col-sm-6">
                   <div class="friend-card">
-                  	<img src="assets/images/covers/5.jpg" alt="profile-cover" class="img-responsive cover" />
+                  	<img src="{{asset('assets/images/covers/1.jpg')}}" alt="profile-cover" class="img-responsive cover" />
                   	<div class="card-info">
-                      <img src="assets/images/users/user-7.jpg" alt="user" class="profile-photo-lg" />
+                      <img src="{{ url('storage/'.$amigos->agentesolicitante->perfil->fotoPerfil) }}" alt="user" class="profile-photo-lg" />
                       <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timelime.html" class="profile-link">Robert Cook</a></h5>
-                      	<p>Photographer at Photography</p>
+                        <a href="#" class="pull-right text-green">Amigo(a)</a>
+                      	<h5><a href="{{ route('perfil.visualizar',$amigos->agentesolicitante->id) }}" class="profile-link">{{ $amigos->agentesolicitante->perfil->nome }}</a></h5>
+                      
+                      	<p>{{ $amigos->agentesolicitante->username }}</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="assets/images/covers/6.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="assets/images/users/user-8.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timeline.html" class="profile-link">Richard Bell</a></h5>
-                      	<p>Graphic Designer at Envato</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="assets/images/covers/7.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="assets/images/users/user-2.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timeline.html" class="profile-link">Linda Lohan</a></h5>
-                      	<p>Software Engineer</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="assets/images/covers/8.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="assets/images/users/user-9.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timeline.html" class="profile-link">Anna Young</a></h5>
-                      	<p>Musician</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="assets/images/covers/9.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="assets/images/users/user-6.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timeline.html" class="profile-link">James Carter</a></h5>
-                      	<p>CEO at IT Farm</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="assets/images/covers/10.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="assets/images/users/user-5.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timeline.html" class="profile-link">Alexis Clark</a></h5>
-                      	<p>Traveler</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            	</div>
+                @endif
+                @endforeach
+            
+                
+            	
+            
             </div>
           </div>
 
-
+@endif
         @include('feed/lados/direita')  
         @include('../footer')
     @endsection

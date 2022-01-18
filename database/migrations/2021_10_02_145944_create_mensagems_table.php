@@ -18,8 +18,8 @@ class CreateMensagemsTable extends Migration
             $table->string('texto');
             $table->unsignedInteger('agenteOrigem');
             $table->unsignedInteger('agenteDestino');
-            $table->foreign('agenteOrigem')->references('id')->on('users');
-            $table->foreign('agenteDestino')->references('id')->on('users');
+            $table->foreign('agenteOrigem')->references('id')->on('users')->onDelete('CASCADE');
+            $table->foreign('agenteDestino')->references('id')->on('users')->onDelete('CASCADE');
             $table->timestamps();
         });
     }

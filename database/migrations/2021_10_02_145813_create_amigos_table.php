@@ -18,8 +18,8 @@ class CreateAmigosTable extends Migration
             $table->string('estado');
             $table->unsignedInteger('agenteSolicitante');
             $table->unsignedInteger('agenteSolicitado');
-            $table->foreign('agenteSolicitante')->references('id')->on('users');
-            $table->foreign('agenteSolicitado')->references('id')->on('users');
+            $table->foreign('agenteSolicitante')->references('id')->on('users')->onDelete('CASCADE');
+            $table->foreign('agenteSolicitado')->references('id')->on('users')->onDelete('CASCADE');
             $table->timestamps();
         });
     }

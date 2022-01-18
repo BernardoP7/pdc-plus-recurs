@@ -106,7 +106,7 @@ jQuery(document).ready(function($) {
     $(window).trigger('resize');
 });
 
-/**
+/** 
  * function for attaching sticky feature
  **/
 

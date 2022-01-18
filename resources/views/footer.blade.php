@@ -1,6 +1,6 @@
   <!-- Footer
     ================================================= -->
-    <footer id="footer">
+   {{--- <footer id="footer">
       <div class="container">
       	<div class="row">
           <div class="footer-wrapper">
@@ -65,15 +65,14 @@
     <!--preloader-->
     <div id="spinner-wrapper">
       <div class="spinner"></div>
-    </div>
+    </div>--}}
+{{-- <scriptsrc="asset('assets/js/step.js')}}"></script>--}}
+   
+    <script src="{{asset('assets/js/jquery-3.1.1.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.sticky-kit.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.scrollbar.min.js')}}"></script>
+    <script src="{{asset('assets/js/script.js')}}"></script>
     
-    <!-- Scripts
-    ================================================= -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTMXfmDn0VlqWIyoOxK8997L-amWbUPiQ&callback=initMap"></script>
-    <script src="assets/js/jquery-3.1.1.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.sticky-kit.min.js"></script>
-    <script src="assets/js/jquery.scrollbar.min.js"></script>
-    <script src="assets/js/script.js"></script>
   </body>
 </html>

@@ -16,10 +16,11 @@ class CreateComentariosTable extends Migration
         Schema::create('comentarios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('texto');
+            $table->unsignedBigInteger('comentarioResposta_id')->nullable();
             $table->unsignedInteger('agente_id');
             $table->unsignedInteger('publicacao_id');
-            $table->foreign('publicacao_id')->references('id')->on('publicacaos');
-            $table->foreign('agente_id')->references('id')->on('users');
+            $table->foreign('publicacao_id')->references('id')->on('publicacaos')->onDelete('CASCADE');
+            $table->foreign('agente_id')->references('id')->on('users')->onDelete('CASCADE');
             $table->timestamps();
         });
     }

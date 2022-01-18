@@ -18,8 +18,8 @@ class CreatePontuacaosTable extends Migration
             $table->integer('valor');
             $table->unsignedInteger('agente_id');
             $table->unsignedInteger('publicacao_id');
-            $table->foreign('agente_id')->references('id')->on('users');
-            $table->foreign('publicacao_id')->references('id')->on('publicacaos');
+            $table->foreign('agente_id')->references('id')->on('users')->onDelete('CASCADE');
+            $table->foreign('publicacao_id')->references('id')->on('publicacaos')->onDelete('CASCADE');
             $table->timestamps();
         });
     }

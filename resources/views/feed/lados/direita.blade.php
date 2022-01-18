@@ -1,6 +1,6 @@
 <!-- Newsfeed Common Side Bar Right
           ================================================= -->
-          <div class="col-md-2 static">
+         {{-- <div class="col-md-2 static">
             <div class="suggestions" id="sticky-sidebar">
               <h4 class="grey">Who to Follow</h4>
               <div class="follow-user">
@@ -42,4 +42,4 @@
           </div>
     		</div>
         </div>
-    </div>
+    </div>--}}
